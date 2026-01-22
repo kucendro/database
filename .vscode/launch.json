@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "kucendro.Main",
+            "env": {
+                "DATABASE_URL": "jdbc:mysql://localhost:3306/bajer",
+                "DATABASE_USER": "user",
+                "DATABASE_PASSWORD": "user"
+            },
+        }
+    ]
+}
