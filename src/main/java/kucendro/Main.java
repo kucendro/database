@@ -16,7 +16,10 @@ public class Main {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(1) + " " + resultSet.getString(2));
             }
-            
+
+            connection.prepareStatement("INSERT INTO users (id, name, email) VALUES ('epsteinid', 'Epstein', 'epstein@example.com')")
+                    .executeUpdate();
+
             resultSet.close();
             closeConnection();
         } catch (Exception e) {

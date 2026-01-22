@@ -4,8 +4,6 @@ import java.sql.Connection;
 
 public class connector {
 
-    private static Connection conn;
-
     private static Connection connection() throws Exception {
         return java.sql.DriverManager.getConnection(
                 System.getenv("DATABASE_URL"),
@@ -14,16 +12,15 @@ public class connector {
     }
 
     public static Connection getConnection() throws Exception {
-        if (conn != null && !conn.isClosed()) {
-            return conn;
+        if (connection() != null && !connection().isClosed()) {
+            return connection();
         }
-        conn = connection();
-        return conn;
+        return connection();
     }
 
     public static void closeConnection() throws Exception {
-        if (conn != null && !conn.isClosed()) {
-            conn.close();
+        if (connection() != null && !connection().isClosed()) {
+            connection().close();
         }
     }
 }
