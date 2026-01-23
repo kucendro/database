@@ -14,4 +14,10 @@ public class consoleOutput implements consoleHeadline {
         System.out.println(LINE);
     }
 
+    public static void printLiveOutput(String content, String live) {
+        String output = content.replace("{}", live);
+        System.out.print("\r" + output);
+        System.out.flush();
+    }
+
 }

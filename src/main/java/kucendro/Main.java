@@ -4,13 +4,14 @@ import java.sql.Connection;
 import static kucendro.db.connector.closeConnection;
 import static kucendro.db.connector.getConnection;
 
-import static kucendro.db.autoDeploy.deploy;
-import static kucendro.db.autoDeploy.undeploy;
+import static kucendro.db.autoDeploy.deployContainer;
+import static kucendro.db.autoDeploy.shutdownContainer;
 
 public class Main {
 
     public static void main(String[] args) throws Exception, InterruptedException {
-        deploy();
+        // TODO: Deploy the container after GUI init on another thread
+        deployContainer();
 
         try {
             Connection connection = getConnection();
@@ -20,9 +21,9 @@ public class Main {
                 System.out.println(resultSet.getString(1) + " " + resultSet.getString(2));
             }
 
-            // connection.prepareStatement("INSERT INTO users (id, name, email) VALUES
-            // ('epsteinid', 'Epstein', 'epstein@example.com')")
-            // .executeUpdate();
+            // connection.prepareStatement(
+            //         "INSERT INTO users (id, name, email) VALUES ('epsteinid', 'Epstein', 'epstein@example.com')")
+            //         .executeUpdate();
 
             resultSet.close();
             closeConnection();
@@ -30,6 +31,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        undeploy();
+        // TODO: Shutdown the container on application exit
+        shutdownContainer();
     }
 }
