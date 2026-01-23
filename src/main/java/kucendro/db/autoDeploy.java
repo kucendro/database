@@ -16,8 +16,8 @@ public class autoDeploy {
             try {
                 printHeadline("Starting database container...");
                 processBuilder.inheritIO().command("docker", "compose", "up", "-d").start().waitFor();
-                Thread.sleep(8000);
-                printHeadline("Database container started.");
+                printHeadline("Seeding the database... cca 5s");
+                Thread.sleep(5000);
             } catch (Exception e) {
                 printHeadline("Container not found!");
             }
