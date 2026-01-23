@@ -23,4 +23,13 @@ public class connector {
             connection().close();
         }
     }
+
+    public static boolean pingDatabase() throws Exception {
+        try {
+            Connection conn = getConnection();
+            return conn != null && !conn.isClosed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
