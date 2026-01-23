@@ -1,6 +1,9 @@
 package kucendro;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.UUID;
 
 import kucendro.logs.errorLogger;
 
@@ -20,16 +23,23 @@ public class Main {
 
         try {
             Connection connection = getConnection();
-            var resultSet = connection.createStatement().executeQuery("SELECT * FROM users");
+            ResultSet resultSet = connection
+                    .createStatement()
+                    .executeQuery("SELECT * FROM users");
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString(1) + " " + resultSet.getString(2));
+                System.out.println("ID: " + resultSet.getString(1) + " NAME: " + resultSet.getString(2) + " EMAIL: "
+                        + resultSet.getString(3));
             }
 
-            // connection.prepareStatement(
-            // "INSERT INTO users (id, name, email) VALUES ('epsteinid', 'Epstein',
-            // 'epstein@example.com')")
-            // .executeUpdate();
+            String name = new String(UUID.randomUUID().toString().substring(0, 16));
+            String email = name + "@example.com";
+
+            PreparedStatement query = connection
+                    .prepareStatement("INSERT INTO users (name, email) VALUES (?, ?)");
+            query.setString(1, name);
+            query.setString(2, email);
+            query.executeUpdate();
 
             resultSet.close();
             closeConnection();

@@ -9,8 +9,6 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
 
     public static void deployContainer() throws Exception, InterruptedException {
 
-        long startTime = System.currentTimeMillis();
-
         if (pingDatabase() == true) {
             printHeadline("Container alive.");
             return;
@@ -22,11 +20,13 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
                 processBuilder.inheritIO().command("docker", "compose", "up", "-d").start().waitFor(); // ? Command
                 printLine();
 
+                long startTime = System.currentTimeMillis();
+
                 while (pingDatabase() == false) {
-                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    float elapsedTime = System.currentTimeMillis() - startTime;
                     Thread.sleep(100);
-                    printLiveOutput("\u001B[31mTesting connection...\u001B[0m {}",
-                            String.valueOf(elapsedTime / 1000) + "s");
+                    printLiveOutput("\u001B[31mTesting connection...\u001B[0m {}s",
+                            String.valueOf(elapsedTime / 1000));
                 }
                 System.out.println();
 
