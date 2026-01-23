@@ -1,2 +1,5 @@
-kucendro/db/connector.class
+kucendro/db/autoDeploy.class
 kucendro/Main.class
+kucendro/global/interfaces/consoleHeadline.class
+kucendro/db/connector.class
+kucendro/global/consoleOutput.class
