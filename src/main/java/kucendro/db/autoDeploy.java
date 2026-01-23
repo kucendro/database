@@ -8,6 +8,7 @@ import static kucendro.global.consoleOutput.printLiveOutput;
 public class autoDeploy implements kucendro.global.interfaces.containerManagement {
 
     public static void deployContainer() throws Exception, InterruptedException {
+
         long startTime = System.currentTimeMillis();
 
         if (pingDatabase() == true) {
@@ -18,7 +19,7 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
 
             try {
                 printHeadline("Starting container...");
-                processBuilder.inheritIO().command("docker", "compose", "up", "-d").start().waitFor(); //? Command
+                processBuilder.inheritIO().command("docker", "compose", "up", "-d").start().waitFor(); // ? Command
                 printLine();
 
                 while (pingDatabase() == false) {
@@ -33,6 +34,7 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
 
             } catch (Exception e) {
                 printHeadline("Container not found!");
+                logger.log("Container not found!", e);
             }
         }
     }
@@ -44,10 +46,11 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
         } else {
             try {
                 printHeadline("Stopping  container...");
-                processBuilder.inheritIO().command("docker", "compose", "down").start().waitFor(); //? Command
+                processBuilder.inheritIO().command("docker", "compose", "down").start().waitFor(); // ? Command
                 printHeadline("Container stopped.");
             } catch (Exception e) {
                 printHeadline("Container not found!");
+                logger.log("Container not found!", e);
             }
         }
     }
@@ -60,10 +63,11 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
         } else {
             try {
                 printHeadline("Destroying container...");
-                processBuilder.inheritIO().command("docker", "compose", "down", "-v").start().waitFor(); //? Command
+                processBuilder.inheritIO().command("docker", "compose", "down", "-v").start().waitFor(); // ? Command
                 printHeadline("Container destroyed.");
             } catch (Exception e) {
                 printHeadline("Container not found!");
+                logger.log("Container not found!", e);
             }
         }
     }

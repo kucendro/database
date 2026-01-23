@@ -2,7 +2,6 @@ package kucendro.global.interfaces;
 
 import kucendro.logs.errorLogger;
 
-public interface containerManagement {
-    public static ProcessBuilder processBuilder = new ProcessBuilder();
+public interface connector {
     errorLogger logger = errorLogger.getInstance();
 }

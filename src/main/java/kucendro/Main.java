@@ -1,6 +1,9 @@
 package kucendro;
 
 import java.sql.Connection;
+
+import kucendro.logs.errorLogger;
+
 import static kucendro.db.connector.closeConnection;
 import static kucendro.db.connector.getConnection;
 
@@ -10,6 +13,8 @@ import static kucendro.db.autoDeploy.shutdownContainer;
 public class Main {
 
     public static void main(String[] args) throws Exception, InterruptedException {
+
+        errorLogger logger = errorLogger.getInstance();
         // TODO: Deploy the container after GUI init on another thread
         deployContainer();
 
@@ -22,16 +27,17 @@ public class Main {
             }
 
             // connection.prepareStatement(
-            //         "INSERT INTO users (id, name, email) VALUES ('epsteinid', 'Epstein', 'epstein@example.com')")
-            //         .executeUpdate();
+            // "INSERT INTO users (id, name, email) VALUES ('epsteinid', 'Epstein',
+            // 'epstein@example.com')")
+            // .executeUpdate();
 
             resultSet.close();
             closeConnection();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log("Error during database operation", e);
         }
 
-        // TODO: Shutdown the container on application exit
-        shutdownContainer();
+        // TODO: Shutdown the container on GUI exit
+        // shutdownContainer();
     }
 }
