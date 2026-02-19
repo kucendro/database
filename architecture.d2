@@ -1,0 +1,13 @@
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 300
+  }
+}
+
+docker.MySQL <-> JWM.model: SQL syntax \n SELECT only on start
+docker.SEED -> docker.MySQL
+JWM.core -> docker: Deploy/Stop
+JWM.core <-> JWM.model
+JWM.hashMap <-> JWM.core: Realtime sync
+JWM.GUI <-> JWM.core: User interaction

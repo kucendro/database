@@ -1,5 +1,7 @@
 package kucendro.db;
 
+import java.io.IOException;
+
 import static kucendro.db.connector.pingDatabase;
 import static kucendro.global.consoleOutput.printHeadline;
 import static kucendro.global.consoleOutput.printLine;
@@ -11,7 +13,6 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
 
         if (pingDatabase() == true) {
             printHeadline("Container alive.");
-            return;
 
         } else {
 
@@ -24,15 +25,15 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
 
                 while (pingDatabase() == false) {
                     float elapsedTime = System.currentTimeMillis() - startTime;
-                    Thread.sleep(100);
                     printLiveOutput("\u001B[31mTesting connection...\u001B[0m {}s",
                             String.valueOf(elapsedTime / 1000));
                 }
+                
                 System.out.println();
 
                 printLine();
 
-            } catch (Exception e) {
+            } catch (IOException | InterruptedException e) {
                 printHeadline("Container not found!");
                 logger.log("Container not found!", e);
             }
@@ -42,13 +43,12 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
     public static void shutdownContainer() throws Exception, InterruptedException {
         if (pingDatabase() == false) {
             printHeadline("Container not running.");
-            return;
         } else {
             try {
                 printHeadline("Stopping  container...");
                 processBuilder.inheritIO().command("docker", "compose", "down").start().waitFor(); // ? Command
                 printHeadline("Container stopped.");
-            } catch (Exception e) {
+            } catch (IOException | InterruptedException e) {
                 printHeadline("Container not found!");
                 logger.log("Container not found!", e);
             }
@@ -59,13 +59,12 @@ public class autoDeploy implements kucendro.global.interfaces.containerManagemen
 
         if (pingDatabase() == false) {
             printHeadline("Container not running.");
-            return;
         } else {
             try {
                 printHeadline("Destroying container...");
                 processBuilder.inheritIO().command("docker", "compose", "down", "-v").start().waitFor(); // ? Command
                 printHeadline("Container destroyed.");
-            } catch (Exception e) {
+            } catch (IOException | InterruptedException e) {
                 printHeadline("Container not found!");
                 logger.log("Container not found!", e);
             }

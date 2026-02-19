@@ -1,5 +1,8 @@
-/Users/mpmp/kDrive/SPŠE/Github/spse/3.D/prgr/database/src/main/java/kucendro/Main.java
-/Users/mpmp/kDrive/SPŠE/Github/spse/3.D/prgr/database/src/main/java/kucendro/db/autoDeploy.java
-/Users/mpmp/kDrive/SPŠE/Github/spse/3.D/prgr/database/src/main/java/kucendro/db/connector.java
-/Users/mpmp/kDrive/SPŠE/Github/spse/3.D/prgr/database/src/main/java/kucendro/global/consoleOutput.java
-/Users/mpmp/kDrive/SPŠE/Github/spse/3.D/prgr/database/src/main/java/kucendro/global/interfaces/consoleHeadline.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/Main.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/db/autoDeploy.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/db/connector.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/global/consoleOutput.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/global/interfaces/connector.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/global/interfaces/consoleHeadline.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/global/interfaces/containerManagement.java
+/home/kucendro/SPŠE/3.D/PRGR/database/src/main/java/kucendro/logs/errorLogger.java
